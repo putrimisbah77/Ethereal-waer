@@ -9,8 +9,19 @@ const ProductSchema = new mongoose.Schema(
     brand: String,
     price: Number,
     salePrice: Number,
+    salePercentage: {
+      type: Number,
+      default: 0, // Default to 0% if no sale is active
+    },
+    saleTitle: {
+      type: String,
+      default: "", // Optional title for the sale
+    },
     totalStock: Number,
-    averageReview: Number,
+    averageReview: {
+      type: Number,
+      default: 0, // Default average review
+    },
   },
   { timestamps: true }
 );
