@@ -2,7 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
-
+require("dotenv").config();
 const authRouter = require("./routes/auth/auth-routes");
 const adminProductsRouter = require("./routes/admin/products-routes");
 const adminOrderRouter = require("./routes/admin/order-routes");
@@ -20,9 +20,7 @@ const net = require("net");
 
 // Create a database connection
 mongoose
-  .connect(
-    "mongodb+srv://2022cs66:221135@cluster0.b8r6x.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
-  )
+.connect(process.env.MONGODB_URI)
   .then(() => console.log("MongoDB connected"))
   .catch((error) => console.log(error));
 
@@ -81,7 +79,7 @@ const app = express();
 // 
 //const frontendOrigin = "https://my-mern-project-frontend-qco45xed7-bismafajar816s-projects.vercel.app";
 //const frontendOrigin = "https://my-mern-project-frontend-d42lxpwwb-bismafajar816s-projects.vercel.app"
-const frontendOrigin = "https://my-mern-project-frontend.vercel.app"
+const frontendOrigin = process.env.FRONTEND_ORIGIN;
 app.use(
   cors({
     origin: frontendOrigin, // Add your exact frontend URL here
